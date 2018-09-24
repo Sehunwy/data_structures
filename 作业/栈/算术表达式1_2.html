@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>算术表达式</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+    function matchBracket(data) {
+        var index = -1;
+        var stack = new Stack();
+        //把字符串转为数组
+        var buffer = data.split('');
+        //获得数组的长度
+        var length = buffer.length;
+        for(var i=0;i<length;i++) {
+            //获得其中的每个字符
+            var word = buffer[i];
+            //如何数组中含有'{','[','('，就有下标，下标大于等于0
+            if(['{','[','('].indexOf(word)!=-1) {
+                stack.push(word);
+            }
+            else {
+                var peek = stack.peek();
+                switch (word) {
+                    case '}':
+                        if(peek=='{'){
+                            stack.pop();
+                        }
+                        else {
+                            index = i;
+                            return index;
+                        }
+                        break;
+                    case ']':
+                        if(peek=='['){
+                            stack.pop();
+                        }
+                        else {
+                            index = i;
+                            return index;
+                        }
+                        break;
+                    case ')':
+                        if(peek=='('){
+                            stack.pop();
+                        }
+                        else {
+                            index = i;
+                            return index;
+                        }
+                        break;
+                }
+            }
+        }
+        return index;
+    }
+
+
+    var arithmeti = "2.3 + 23 / 12 + (3.14159×0.2}";
+
+    console.log(matchBracket(arithmeti));
+
+
+</script>
+</html>

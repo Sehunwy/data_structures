@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>佩兹糖果盒</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+    //糖的数量
+    var num = 50;
+    //糖颜色的数组
+    var sugars = ['红','黄','白'];
+    //创建糖盒
+    var box = new Stack();
+    //根据数量创建糖，并且放到糖盒
+    for(var i=0;i<num;i++) {
+        var random = Math.floor(Math.random()*3);
+        box.push(sugars[random]);
+    }
+
+    //糖盒里面糖的顺序
+    box.forEach(function (sugar) {
+        console.log(sugar);
+    })
+
+    //糖盒缓存
+    var buffer = new Stack();
+    //遍历糖盒里面的糖，把不是黄色的糖放到新的糖盒里
+    box.forEach(function (sugar) {
+        if(sugar!='黄') {
+            buffer.push(sugar);
+        }
+    })
+
+    //清空原来的糖盒
+    box.clear();
+
+    //把新糖盒里面的糖按照顺序放到原来的糖盒中
+    buffer.forEach(function (sugar) {
+        box.push(sugar);
+    })
+
+    console.log("=========已经取出后的糖===========")
+    box.forEach(function (sugar) {
+       console.log(sugar);
+    })
+
+</script>
+</html>

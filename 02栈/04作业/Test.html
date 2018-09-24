@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+
+
+<script>
+    //1,糖的数量
+    var num=50;
+    //2,创建糖盒
+    var box= new Stack();
+    //3,糖的数组
+    var sugars=['红','黄','白'];
+    //4,根据数量创建糖，并且放到糖盒
+    for(var i=0;i<num;i++){
+        var random = Math.floor(Math.random()*3);
+        box.push(sugars[random]);
+    }
+
+    //糖盒里面糖的顺序
+    box.forEach(function (sugar) {
+        console.log(sugar);
+    })
+   //糖盒的缓存
+    var buffer =new Stack();
+    //遍历糖盒里面的糖，把非黄色按照顺序放到新糖盒里面
+    box.forEach(function (sugar) {
+        if(sugar!='黄'){
+            buffer.push(sugar);
+        }
+    })
+    //老糖盒数据清空
+    box.clear();
+    //把新糖盒里面的糖按照顺序放到老糖盒里面
+    buffer.forEach(function (sugar) {
+        box.push(sugar);
+    })
+    console.log("******已经调整完毕******");
+    box.forEach(function (sugar) {
+        console.log(sugar);
+    })
+
+</script>
+</html>

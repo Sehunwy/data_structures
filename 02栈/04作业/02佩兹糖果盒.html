@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>03佩兹糖果盒</title>
+    <script src="Stack.js"></script>
+    <script>
+
+        var box =  new Stack();
+        var sugars=['red','white','yellow'];
+        
+        for(var i=0;i<10;i++){
+            //随机获得 0 ，1 ，2
+            var index = Math.floor(Math.random()*3);
+            box.push(sugars[index]);
+        }
+        //显示糖的顺序
+        box.forEach(function(sugar){
+            console.log(sugar);
+        })
+        //暂时装糖
+        var buffer = new Stack();
+        box.forEach(function(sugar){
+            if(sugar!='yellow'){
+                buffer.push(sugar);
+            }
+        })
+        //清空以前的糖盒
+        box.clear();
+        
+        //遍历缓存糖盒
+        buffer.forEach(function(sugar){
+            box.push(sugar);
+        })
+        console.log("************************");
+        //显示糖盒里面的糖
+        box.forEach(function(sugar){
+            console.log(sugar);
+        })
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

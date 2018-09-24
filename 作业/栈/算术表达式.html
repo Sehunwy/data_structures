@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>算术表达式</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    String.prototype.forEach = function(call) {
+        var length = this.length;
+        for(var i=0;i<length;i++) {
+            call(this[i]);
+        }
+    }
+
+    var stack = new Stack();
+
+    var arithmeti = "2.3 + 23 / 12 + (3.14159×0.24";
+
+    var parentheses = "(";
+    var brackets = "[";
+    var Curlybraces = "{";
+
+    var parentheses1 = ")";
+    var brackets1 = "]";
+    var Curlybraces1 = "}";
+
+    arithmeti.forEach(function (item) {
+        switch (item) {
+            case parentheses:
+                stack.push(parentheses);
+                console.log(parentheses);
+                break;
+            case brackets:
+                stack.push(brackets);
+                console.log(brackets);
+                break;
+            case Curlybraces:
+                stack.push(Curlybraces);
+                console.log(Curlybraces);
+                break;
+
+            case parentheses1:
+                var buffer = stack.peek();
+                console.log("buffer"+buffer);
+                if(buffer=="(") {
+                    stack.pop();
+                    console.log("括号匹配");
+                }
+                else {
+                    console.log("括号不匹配")
+                }
+                break;
+            case brackets1:
+                var buffer = stack.peek();
+                if(buffer=="[") {
+                    stack.pop();
+                    console.log("括号匹配")
+                }
+                else {
+                    console.log("括号不匹配")
+                }
+                break;
+            case Curlybraces1:
+                var buffer = stack.peek();
+                console.log("buffer"+buffer);
+                if(buffer=="{") {
+                    stack.pop();
+                    console.log("括号匹配")
+                }
+                else {
+                    console.log("括号不匹配")
+                }
+                break;
+        }
+
+        if(stack.length()!=0) {
+            console.log("括号不匹配");
+        }
+
+
+        //arithmetis.push(item);
+    });
+
+
+    //console.log(arithmetis);
+</script>
+</html>

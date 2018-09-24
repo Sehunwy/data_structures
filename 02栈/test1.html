@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Stack() {
+        this.dataStore = [];
+        this.push = function (data) {
+            //获得当前的下标
+            //var index = this.dataStore.length;
+            //添加数据
+            //this.dataStore[index] = data;
+
+            this.dataStore.push(data);
+
+        }
+
+        this.pop = function () {
+            return this.dataStore.pop();
+        }
+        
+        this.peek = function () {
+            //获得数组的长度
+            var length = this.dataStore.length;
+            if(length<=0)
+                return null;
+            return this.dataStore[length-1];
+        }
+
+        this.clear = function () {
+            delete  this.dataStore;
+            this.dataStore = [];
+        }
+
+        this.length = function () {
+            return this.dataStore.length;
+        }
+
+        this.empty = function () {
+            //获得数组的长度
+            var length = this.dataStore.length;
+            if(length>0)
+                return false;
+            else
+                return true;
+        }
+
+        this.forEach = function (call) {
+            //获得数组的长度
+            var length = this.dataStore.length;
+            for(var i=0;i<length;i++)
+                call(this.dataStore[i]);
+        }
+    }
+
+    var stack = new Stack();
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+
+    //stack.pop();
+
+    stack.forEach(function (data) {
+        console.log(data);
+    });
+
+</script>
+</html>

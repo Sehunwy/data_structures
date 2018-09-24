@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据结构</title>
+    <script>
+
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+            this.previous = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            //插入节点
+            this.insert=function(element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,获得最后的节点
+                while(currNode.next!=null){
+                    //3,把当前节点的下一个节点赋值给当前的节点
+                    currNode= currNode.next;
+                }
+                //4,创建新节点
+                var newNode = new Node(element);
+                //5，把新创建的节点插入到最后的节点
+                currNode.next =newNode;
+                //6,把最后的节点给新节点的前驱赋值
+                newNode.previous=currNode;
+            }
+
+            this.contains=function (element){
+                //1,获得第一个节点
+                var currNode = this.head;
+
+                //2,遍历节点
+                while(currNode!=null&&currNode.element!=element){
+                    //3，把当前节点的下一个节点给当前节点赋值
+                    currNode = currNode.next;
+                }
+
+                if(currNode==null){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
+            this.find=function(element){
+                //1,获得第一个节点
+                var currNode = this.head;
+
+                //2,遍历节点
+                while(currNode.element!=element){
+                    //3，把当前节点的下一个节点给当前节点赋值
+                    currNode = currNode.next;
+                }
+                //返回当前节点
+                return currNode;
+            }
+
+            this.forEach=function (call) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,创建下标
+                var index=0;
+                while(currNode!=null){
+                    call(currNode,index);
+                    index++;
+                    currNode = currNode.next;
+                }
+            }
+        }
+
+
+        function Set() {
+            this.list =new LList();
+            this.add = function (data) {
+                if (!this.list.contains(data)) {
+                    this.list.insert(data);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+
+            this.forEach= function (call) {
+                this.list.forEach(function (node,index) {
+                    call(node.element,index);
+                })
+            };
+        }
+
+        var lList = new LList();
+
+        var set = new Set();
+        set.add("小明");
+        set.add("小李");
+        set.add("小刚");
+        set.add("小红");
+        set.add("小强");
+        set.forEach(function (item,index) {
+          console.log(item);
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动排序</title>
+    <script src="Node.js"></script>
+    <script src="LinkedList.js"></script>
+    <script src="Person.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var llist = new LList();
+    for(var i=0;i<20;i++) {
+        var rand = Math.floor(Math.random()*50)+10;
+        var person = new Person("张"+i,rand);
+        var node = llist.findLast();
+        var nodeelement = node.element;
+        var age = node.element.age;
+        if(age<rand||nodeelement=='head')
+            llist.insert(person);
+        else{
+            var head = llist.head;
+            var headnext = head.next;
+            while(headnext.element.age<rand)
+            {
+                headnext = headnext.next;
+            }
+            llist.insertBefore(person,headnext.element);
+        }
+    }
+
+    console.log("排序后：");
+    llist.forEach(function (item) {
+        if(item!=llist.head) {
+            console.log("姓名："+item.element.name+"  年龄："+item.element.age);
+        }
+    })
+
+</script>
+</html>

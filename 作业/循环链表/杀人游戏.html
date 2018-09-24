@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>杀人游戏</title>
+    <script src="Node.js"></script>
+    <script src="LList.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    //参加游戏的人数
+    var n = 40;
+    //第几个人会被杀掉
+    var m = 3;
+    var llist = new LList();
+    for(var i=1;i<=n;i++) {
+        llist.insert(i);
+    }
+
+    // for(var i=0;i<3;i++) {
+    //
+    // }
+
+    var i=0;
+    while(n>2) {
+        llist.forEach(function (item) {
+            i++;
+            if(i%m==0) {
+                llist.remove(item.element);
+                n--;
+            }
+        });
+    }
+
+    console.log("安全的位置：")
+    llist.forEach(function (item) {
+        console.log(item.element);
+    })
+
+
+
+</script>
+</html>

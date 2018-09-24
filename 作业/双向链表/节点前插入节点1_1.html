@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点前插入节点</title>
+    <script src="LList1_1.js"></script>
+    <script src="Node.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var list = new LList();
+
+    list.insert("今");
+    list.insert("天");
+    list.insert("星");
+    list.insert("期");
+    list.insert("五");
+    list.insertBefore('在期的前面插入','期');
+    list.forEach(function (node) {
+        console.log(node.element);
+    });
+</script>
+</html>

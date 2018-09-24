@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点向前移动</title>
+    <script src="LinkedList1.js"></script>
+    <script src="Node.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+    let lList = new LList();
+
+    lList.insert("你");
+    lList.insert("在");
+    lList.insert("做");
+    lList.insert("什么啊");
+    lList.advance("做",11);
+
+    lList.forEach(function (node) {
+        console.log(node.element);
+    })
+
+
+</script>
+</html>

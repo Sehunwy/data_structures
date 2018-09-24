@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据结构</title>
+    <script>
+        function Set() {
+            this.dataStore = [];
+            this.add = function (data) {
+                if (this.dataStore.indexOf(data) < 0) {
+                    this.dataStore.push(data);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.remove = function (data) {
+                var pos = this.dataStore.indexOf(data);
+                if (pos > -1) {
+                    this.dataStore.splice(pos, 1);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.forEach= function (call) {
+                var length =this.dataStore.length;
+                for(var i=0;i<length;i++){
+                    call(this.dataStore[i],i);
+                }
+            };
+        }
+
+        var names = new Set();
+        names.add("小明");
+        names.add("小李");
+        names.add("小刚");
+        names.add("小红");
+        names.add("小强");
+        if (names.add("小红")) {
+            console.log("小静已经被添加")
+        }
+        else {
+            console.log("小红已经存在不能添加");
+        }
+        names.forEach(function (item,index) {
+            console.log(item);
+        });
+
+        if (names.remove('小红')) {
+            console.log("删除成功！");
+        }
+        else {
+            console.log("删除失败！");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

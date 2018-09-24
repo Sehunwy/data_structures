@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>01 其他方法</title>
+    <script>
+        function Queue(){
+            this.dataStore = [];
+            //进队列，从尾部添加数据
+            this.enqueue=function (element) {
+                //this.dataStore.push(element);
+                this.dataStore[this.dataStore.length]=element;
+            }
+            //从队列头部删除数据，并且获得这个数据
+            this.dequeue=function () {
+                //1 获得头部的数据a
+                var head = this.dataStore[0];
+                //2,删除数组头部的数据
+                var length = this.dataStore.length;
+                for(var i=0;i<length-1;i++){
+                    this.dataStore[i]=this.dataStore[i+1];
+                }
+                //3,最后的数据置空
+                this.dataStore[length-1]=null;
+                this.dataStore.length--;
+                return head;
+            }
+            //获得队列最前面的数据
+            this.front=function(){
+                return this.dataStore[0];
+            }
+            //获得队列最后面的数据
+            this.back=function () {
+                return this.dataStore[this.dataStore.length-1];
+            }
+            //依次返回当前队列的数据
+            this.toString=function () {
+                return this.dataStore.toString();
+            }
+            //判断当前队列是否为空
+            this.empty=function () {
+                if(this.dataStore.length==0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            //遍历当前队列的数据
+            this.forEach=function (call) {
+                var length = this.dataStore.length;
+                for(var i=0;i<length;i++){
+                    call(this.dataStore[i],i);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

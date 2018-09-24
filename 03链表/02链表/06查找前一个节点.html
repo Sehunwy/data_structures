@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-查找节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,找到最后的节点
+                while (currNode.next != null) {
+                    currNode = currNode.next;
+                }
+                //3，把新创建的节点添加到最后节点
+                currNode.next=new Node(element);
+            };
+
+            this.forEach=function(call) {
+                //1,获得头节点
+                var currNode = this.head;
+                var index=0;
+                //2,遍历节点数据
+                while(currNode.next!=null){
+                    call(currNode.element,index);
+                    currNode=currNode.next;
+                }
+            };
+
+            this.find=function (element) {
+                var currNode = this.head;
+                while(currNode.element!=element){
+                    currNode = currNode.next;
+                }
+                return currNode;
+            }
+
+            this.findPrevious=function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,当前节点的下一个节点不为空，同时当前节点的下一个节点的值不等于当前给定的值，就继续遍历
+                while(currNode.next!=null&&currNode.next.element!=element){
+                    //3，把当前节点的后继给予当前的节点
+                    currNode = currNode.next;
+                }
+                //4,返回element所在节点的前一个节点
+                return currNode;
+            }
+        }
+
+        var lList = new LList();
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("小花");
+
+       var preNode= lList.findPrevious('小李');
+
+       console.log(preNode.element);
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

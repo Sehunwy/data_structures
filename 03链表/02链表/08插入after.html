@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-查找节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+
+        function LList() {
+            this.head = new Node("head");
+            //插入节点
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,找到最后的节点
+                while (currNode.next != null) {
+                    currNode = currNode.next;
+                }
+                //3，把新添加的节点连接到最后的节点后面
+                currNode.next = new Node(element);
+            }
+
+            // 在某个节点后面插入节点
+            this.insertAfter = function (element,after) {
+                //1,获得after节点
+                var after = this.find(after);
+                //2,对after节点判断
+                if(after.element=='head'){
+                    this.insert(element);
+                }else{
+                    var currNode = new Node(element);
+                    //如果after是最后一个节点,就直接把当前的节点添加到最后节点
+                    if(after.next==null){
+                        after.next = currNode;
+                    }else{  // 1 2 3 4      8 2
+                        //after节点的后继指向当前节点的后继
+                        currNode.next=after.next;
+                        after.next = currNode;
+                    }
+
+                }
+            }
+
+            this.forEach = function (call) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,遍历的下标
+                var index = 0;
+                //3,遍历节点
+                while (currNode != null) {
+                    call(currNode, index);
+                    //下标值增加
+                    index++;
+                    //把节点的后继赋值给当前的节点
+                    currNode = currNode.next;
+                }
+            }
+
+            this.find=function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2，根据当前的节点的值是否等于当前的element来进行遍历
+                while(currNode.element!=element){
+                    //3,把当前节点的后继给予当前的节点
+                    currNode = currNode.next;
+                }
+                //4,返回当前的节点
+                return currNode;
+            }
+
+            this.findPrevious=function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,当前节点的下一个节点不为空，同时当前节点的下一个节点的值不等于当前给定的值，就继续遍历
+                while(currNode.next!=null&&currNode.next.element!=element){
+                    //3，把当前节点的后继给予当前的节点
+                    currNode = currNode.next;
+                }
+                //4,返回element所在节点的前一个节点
+                return currNode;
+            }
+
+            this.remove=function (element) {//123   element =2
+                //1,查找前一个节点
+                var preNode=this.findPrevious(element);
+                //当前节点的后面没有节点，就把当前节点的前一个节点next=null
+                if(preNode.next.next==null){
+                    preNode.next=null;
+                }else{
+                    preNode.next = preNode.next.next;
+                }
+            }
+        }
+
+        var lList = new LList();
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("大花");
+
+       lList.insertAfter('小花','小李');
+
+        lList.forEach(function (node,index) {
+            console.log(node.element);
+        })
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

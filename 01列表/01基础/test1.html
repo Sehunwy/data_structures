@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function List() {
+        this.dataStore = [];
+
+        this.append = function () {
+            this.dataStore[this.length()] = data;
+        }
+
+        this.length = function () {
+            //获取数组的长度
+            var length = this.dataStore.length;
+            return length;
+        }
+
+        this.find = function (data) {
+            //获得数组的长度
+            var length = this.length();
+            //设置返回数组的下标
+            var index = -1;
+            //遍历
+            for(var i=0;i<length;i++) {
+                if(data==this.dataStore[i]){
+                    index = i
+                    return index;
+                }
+            }
+            return index;
+        }
+
+        this.ForEach = function (call) {
+            //获得数组的长度
+            var length = this.length();
+            //遍历
+            for(var i=0;i<length;i++) {
+                call(this.dataStore[i]);
+            }
+        }
+
+        //如果删除成功返回1，失败返回0
+        this.remove = function (data) {
+            //找到数据所在的位置
+            var index = this.find(data);
+            if(index==-1)
+                return 0;
+            //获得数组的长度
+            var length = this.length();
+            for(var i=index+1;i<length;i++) {
+                this.dataStore[i-1] = this.dataStore[i];
+            }
+            this.dataStore[length-1] = null;
+            this.dataStore.length--;
+            return 1;
+        }
+
+        this.insert = function (data,after) {
+            var index = this.find(after);
+            if(index==-1) {
+                //向队列后面添加数据
+                this.append(data);
+            }
+            else {
+                var length = this.length();
+                for(var i=length-1;i>index;i--) {
+                    this.dataStore[i] = this.dataStore[i+1];
+                }
+                this.dataStore[index+1] = data;
+            }
+        }
+
+        this.clear = function () {
+            delete this.dataStore;
+            this.dataStore = [];
+        }
+
+        this.contains = function (data) {
+
+            var iscontains = false;
+            this.dataStore.forEach(function (item) {
+                if(item == data) {
+                    iscontains = true;
+                    return;
+                }
+            });
+            return iscontains;
+        }
+
+    }
+
+    var list = new List();
+
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    list.append(4);
+
+    list.ForEach(function (data) {
+        console.log(data);
+    });
+
+</script>
+</html>

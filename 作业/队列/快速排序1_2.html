@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    let numbers = [];
+    for(let i=0;i<50;i++) {
+        let buffer = Math.floor(Math.random()*90)+10;
+        numbers.push(buffer);
+    }
+
+    let queue = [];
+
+    for(let i=0;i<10;i++) {
+        let  buffer = new Deque();
+        queue.push(buffer);
+    }
+
+    function SortingOne() {
+        //获得数据的长度
+        let length = numbers.length;
+        //对每个数据进行处理，然后按照个位排序
+        for(let i=0;i<length;i++) {
+            //获得具体数据
+            let buffer = numbers[i];
+            let index = buffer%10;
+            queue[index].enqueue(buffer);
+        }
+        delete  numbers;
+        numbers = [];
+        for(let i=0;i<10;i++) {
+            if(!queue[i].empty())
+            queue[i].forEach(function (data) {
+                numbers.push(data);
+            })
+        }
+        return numbers;
+    }
+
+    function SortingTen() {
+        for(let i=0;i<10;i++) {
+            queue[i].clear();
+        }
+        //获得数据的长度
+        let length = numbers.length;
+        //对每个数据进行处理，然后按照十位排序
+        for(let i=0;i<length;i++) {
+            //获得具体数据
+            let buffer = numbers[i];
+            let index = Math.floor(buffer/10);
+            queue[index].enqueue(buffer);
+        }
+        delete  numbers;
+        numbers = [];
+        for(let i=0;i<10;i++) {
+            if(!queue[i].empty())
+                queue[i].forEach(function (data) {
+                    numbers.push(data);
+                })
+        }
+        return numbers;
+    }
+
+    SortingOne();
+    console.log(SortingTen());
+
+</script>
+</html>

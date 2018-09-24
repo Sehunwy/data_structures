@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成随机整数</title>
+</head>
+<body>
+
+</body>
+<script>
+    var m = 2;
+    var n = 10;
+    var num = 5;
+    var data = [];
+    for(var i=0;i<num;i++){
+        var rand = Math.floor(Math.random()*(n-m+1))+m;
+        data.push(rand);
+    }
+    console.log(data);
+</script>
+</html>

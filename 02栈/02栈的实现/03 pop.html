@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>03 pop</title>
+    <script>
+
+        function Stack() {
+            this.dataStore = [];
+            this.push = function (element) {
+                this.dataStore[this.dataStore.length] = element;
+            }
+            this.pop=function(){
+                if(this.dataStore.length<1)
+                    return null;
+                //取得最后的数据
+                var buffer = this.dataStore[this.dataStore.length-1];
+                //把最后的数据置空
+                this.dataStore[this.dataStore.length-1]=null;
+                //改变数组的长度
+                this.dataStore.length--;
+                //返回数据
+                return buffer;
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

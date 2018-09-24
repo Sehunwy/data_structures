@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点向前移动</title>
+    <script src="Node.js"></script>
+    <script src="LList.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var list = new LList();
+
+    list.insert("今");
+    list.insert("天");
+    list.insert("星");
+    list.insert("期");
+    list.insert("五");
+    list.advance("今",1);
+    list.forEach(function (node) {
+        console.log(node.element);
+    });
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script src="Person.js"></script>
+    <script src="Queue.js"></script>
+    <script>
+        //1,创建对象
+        var queue = new Queue();
+
+        //2,准备数据
+        var psersons = [];
+        for (var i = 0; i < 20; i++) {
+            var name = "姓名" + i;
+            var money = (Math.floor(Math.random() * 5) + 9) * 100;
+            psersons[i] = new Person(name, money);
+            console.log(name+"拥有"+money);
+        }
+        console.log("***************************");
+        while (psersons.length > 0) {
+            queue.enqueue(psersons.shift());
+        }
+
+        var buffer = queue.fliter(function (item, index) {
+
+            if (item.money > 1000) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        buffer.forEach(function (item) {
+            console.log(item.money);
+        })
+
+    </script>
+</head>
+<body>
+<h1>添加person对象，不少于20个，当前银行只对存款上1000的人服务</h1>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        function Node(element, left, right) {
+            this.element = element;
+            this.left = left;
+            this.right = right;
+            this.show = function () {
+                return this.element;
+            };
+        }
+        function BST() {
+            this.root = null;
+            this.insert = function (element) {
+                var node = new Node(element, null, null);
+                if (this.root == null) {
+                    this.root = node;
+                }
+                else {
+                    var current = this.root;
+                    var parent;
+                    while (true) {
+                        parent = current;
+                        if (element < current.element) {
+                            current = current.left;
+                            if (current == null) {
+                                parent.left = node;
+                                break;
+                            }
+                        }
+                        else {
+                            current = current.right;
+                            if (current == null) {
+                                parent.right = node;
+                                break;
+                            }
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        function Node(data, left, right) {
+            this.data = data;
+            this.left = left;
+            this.right = right;
+            this.parent=null;
+            this.show = function () {
+                return this.data;
+            };
+        }
+        function BST() {
+            this.root = null;
+            this.insert = function (data) {
+                var n = new Node(data, null, null);
+                if (this.root == null) {
+                    this.root = n;
+                }
+                else {
+                    var current = this.root;
+                    var parent;
+                    while (true) {
+                        parent = current;
+                        if (data < current.data) {
+                            current = current.left;
+                            if (current == null) {
+                                parent.left = n;
+                                n.parent=parent;
+                                break;
+                            }
+                        }
+                        else {
+                            current = current.right;
+                            if (current == null) {
+                                parent.right = n;
+                                n.parent=parent;
+                                break;
+                            }
+                        }
+                    }
+                }
+            };
+            this.inOrder = function (node) {
+                if (!(node == null)) {
+                    this.inOrder(node.left);
+                    console.log(node.show() + " ");
+                    this.inOrder(node.right);
+                }
+            };
+            this.preOrder=function (node) {
+                if (!(node == null)) {
+                    console.log(node.show() + " ");
+                    this.preOrder(node.left);
+                    this.preOrder(node.right);
+                }
+            }
+
+            this.postOrder=function(node) {
+                if (!(node == null)) {
+                    this.postOrder(node.left);
+                    this.postOrder(node.right);
+                    console.log(node.show() + " ");
+                }
+            }
+            this.getMin=function (current) {
+                while (current.left != null) {
+                    current = current.left;
+                }
+                return current;
+            }
+            this.getMax=function () {
+                var current = this.root;
+                while (current.right != null) {
+                    current = current.right;
+                }
+                return current.data;
+            }
+            this.find=function (data) {
+                var current = this.root;
+                while (current != null) {
+                    if (current.data == data) {
+                        return current;
+                    }
+                    else if (data < current.data) {
+                        current = current.left;
+                    }
+                    else {
+                        current = current.right;
+                    }
+                }
+                return null;
+            }
+
+            this.removeNode=function (data) {
+
+                //1,获得要删除的节点
+                var node = this.find(data);
+                //2,如果当前的节点为空
+                if(node==null)
+                    return ;
+                //3,获得当前节点的父节点
+                var parentNode = node.parent;
+                var leftNode = node.left;
+                var right=node.right;
+
+                //1,当前节点没有右节点，没有左节点
+                if(leftNode==null&&right==null){
+
+                    if(parentNode!=null){
+
+                        if(parentNode.data>node.data){
+                            parentNode.left=null;
+                        }else{
+                            parentNode.right=null;
+                        }
+                    }else{
+                        this.root=null;
+                    }
+                }
+                //2,没有右节点
+
+                if(right==null){
+
+                    if(parentNode!=null){
+
+                        if(parentNode.data>node.data){
+                            parentNode.left=leftNode;
+                        }else{
+                            parentNode.right=leftNode;
+                        }
+                        if(leftNode!=null)
+                        leftNode.parent=parentNode;
+
+                    }else{
+                       this.root=leftNode;
+                       this.root.parent=null;
+                    }
+                }else{
+
+                    //当前节点的父节点不为空的时候，就让右节点连接当前节点的父节点
+                    if(parentNode!=null){
+                        //1,连接右节点
+                        if(parentNode.data>node.data){
+                            parentNode.left=right;
+                        }else{
+                            parentNode.right=right;
+                        }
+                        right.parent=parentNode;
+                    }else{
+                        this.root=right;
+                        this.root.parent=null;
+                    }
+
+
+                    //左节点接到右节点上面最小节点的左边
+                    var minNode = this.getMin(right);
+                    minNode.left=leftNode;
+
+                    if(leftNode!=null)
+                        leftNode.parent=minNode;
+
+                }
+            }
+        }
+
+        var nums = new BST();
+        nums.insert(23);
+        nums.insert(45);
+        nums.insert(16);
+        nums.insert(37);
+        nums.insert(3);
+        nums.insert(99);
+        nums.insert(22);
+
+
+
+
+        nums.removeNode(22);
+        // console.log("删除结束");
+        nums.inOrder(nums.root);
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正数组的最大差值</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = [10,5,11,7,8,9];
+    var length = data.length;
+    for(var i=1;i<length;i++){
+        while(data[i-1]>data[i]&&(i-1)>=0){
+            var buffer = data[i-1];
+            data[i-1] = data[i];
+            data[i] = buffer;
+            i--;
+        }
+    }
+    console.log("正数组的最大差值");
+    var difference = data[length-1]-data[0];
+    console.log(difference);
+</script>
+</html>

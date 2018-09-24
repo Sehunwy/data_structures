@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>队列底层</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var deque = new Deque();
+    deque.enqueue(1);
+    deque.enqueue(2);
+    deque.enqueue(3);
+    deque.dequeue();
+    deque.enqueuehead(1);
+    deque.dequeueback();
+    deque.forEach(function (item) {
+        console.log(item);
+    })
+</script>
+</html>

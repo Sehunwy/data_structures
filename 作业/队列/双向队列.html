@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向队列</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var deque = new Deque();
+    console.log("从尾部添加数据");
+    deque.enqueue(1);
+    deque.enqueue(2);
+    deque.enqueue(3);
+    deque.enqueue(4);
+    deque.enqueue(5);
+    deque.forEach(function (item) {
+        console.log(item);
+    })
+
+    console.log("从头部添加数据");
+    deque.enqueuehead(1);
+    deque.enqueuehead(2);
+    deque.enqueuehead(3);
+    deque.enqueuehead(4);
+    deque.enqueuehead(5);
+    deque.forEach(function (item) {
+        console.log(item);
+    })
+
+    console.log("队头删除元素");
+
+    deque.dequeue();
+    deque.forEach(function (item) {
+        console.log(item);
+    })
+
+    console.log("队尾删除元素");
+    deque.dequeueback();
+    deque.forEach(function (item) {
+        console.log(item);
+    })
+
+</script>
+</html>

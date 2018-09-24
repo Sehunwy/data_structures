@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>佩兹糖果盒</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var color;
+    var stack = new Stack();
+    var stackchoose = new Stack();
+    for(var i=0;i<10;i++) {
+        var rand = Math.floor(Math.random()*3);
+        if(rand==0) {
+            color = "红色";
+        }
+        else if(rand==1) {
+            color = "黄色";
+        }
+        else if(rand==2) {
+            color = "白色";
+        }
+        stack.push(color);
+    }
+
+    console.log("选之前");
+    stack.forEach(function (item) {
+        if(item=="黄色") {
+            stack.pop();
+        }
+        else {
+            stackchoose.push(item);
+            stack.pop();
+        }
+        console.log(item);
+    })
+
+    console.log("=========");
+
+    stackchoose.forEach(function (item) {
+        stack.push(item);
+    });
+
+    console.log("选之后")
+    stack.forEach(function (item) {
+        console.log(item);
+    })
+
+</script>
+</html>

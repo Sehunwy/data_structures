@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-插入节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            //插入节点
+            this.insert=function (element) {
+                //1,获得头节点
+                var currNode =  this.head;
+                //2,找到最后的节点
+                while(currNode.next!=null){
+                    currNode=currNode.next;
+                }
+                //3，把新添加的节点连接到最后的节点后面
+                currNode.next = new Node(element);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

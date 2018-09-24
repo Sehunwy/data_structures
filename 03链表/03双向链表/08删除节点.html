@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-查找节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+            this.previous = null;
+        }
+
+        function LList() {
+            this.head = new Node("head");
+
+            this.length = 1;
+            //插入节点
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,获得最后的节点
+                while (currNode.next != null) {
+                    //3,把当前节点的下一个节点赋值给当前的节点
+                    currNode = currNode.next;
+                }
+                //4,创建新节点
+                var newNode = new Node(element);
+                //5，把新创建的节点插入到最后的节点
+                currNode.next = newNode;
+                //6,把最后的节点给新节点的前驱赋值
+                newNode.previous = currNode;
+                //7,节点长度增加
+                this.length++;
+            }
+            //遍历节点
+            this.forEach = function (call) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,创建下标
+                var index = 0;
+                while (currNode != null) {
+                    call(currNode, index);
+                    index++;
+                    currNode = currNode.next;
+                }
+            }
+
+            //反向遍历节点
+            this.forEachReverse = function (call) {
+                //1 获得最后的节点
+                var lastNode = this.findLast();
+                //2,获得下标
+                var index = this.length - 1;
+                //3,反向遍历
+                while (lastNode != null) {
+
+                    call(lastNode, index);
+                    index--;
+                    lastNode = lastNode.previous;
+                }
+            }
+            //找到最后的节点
+            this.findLast = function () {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,遍历节点
+                while (currNode.next != null) {
+                    //3，把当前节点的下一个节点给当前节点赋值
+                    currNode = currNode.next;
+                }
+                //3,返回当前的节点
+                return currNode;
+            }
+
+            this.find = function (element) {
+                //1,获得第一个节点
+                var currNode = this.head;
+
+                //2,遍历节点
+                while (currNode.element != element) {
+                    //3，把当前节点的下一个节点给当前节点赋值
+                    currNode = currNode.next;
+                }
+                //返回当前节点
+                return currNode;
+            }
+
+            this.remove = function (element) {
+                //1,获得当前的节点
+                var currNode = this.find(element);
+                //2,判断当前节点是否是最后的节点
+                if (currNode.next == null) {
+                    //为空，说明是最后一个节点
+                    //3，找到当前节点的前一个节点
+                    var preNode = currNode.previous;
+                    //4,前一个节点的后继为空
+                    preNode.next = null;
+                } else {
+                    //不为空，说明不是最后一个节点
+                    //3，找到当前节点的前一个节点
+                    var preNode = currNode.previous;
+                    //4,找到当前节点的后一个节点
+                    var lastNode = currNode.next;
+                    //5,前一个节点的next指向lastNode
+                    preNode.next = lastNode;
+                    //6,后一个节点的前驱指向前一个节点
+                    lastNode.previous = preNode;
+                }
+            }
+
+
+        }
+
+        var lList = new LList();
+
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("大花");
+        lList.remove("小李");
+        console.log("**************正向遍历***************");
+        lList.forEach(function (node, index) {
+            console.log(node.element);
+        })
+        console.log("**************反向遍历***************");
+        lList.forEachReverse(function (node, index) {
+            console.log(node.element);
+        })
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

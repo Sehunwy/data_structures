@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    class Person {
+        constructor(sex,name) {
+            this.sex = sex;
+            this.name = name;
+        }
+    }
+
+    var names = ["F Allison McMillan",
+        " M Frank Opitz ",
+        "M Mason McMillan ",
+        "M Clayton Ruff",
+        "F Cheryl Ferenback ",
+        " M Raymond Williams",
+        "F Jennifer Ingram ",
+        "M Bryan Frazer",
+        "M David Durr",
+        "M Danny Martin",
+        "F Aurora Adney"];
+
+    var manQueue = new Queue();
+    var womanQueue = new Queue();
+
+    //给队伍编组
+    names.forEach(function (data) {
+        data = data.trim();
+        var sex = data.charAt(0);
+        let name = data.substring(2,data.length);
+
+        if(sex=='F'){
+            let person = new Person('F',name);
+            womanQueue.enqueue(person);
+        }
+        else {
+            let person = new Person('M',name);
+            manQueue.enqueue(person);
+        }
+    });
+
+    while(!(womanQueue.empty())&&!(manQueue.empty())){
+        womanQueue.dequeue();
+        manQueue.dequeue();
+    }
+
+    if(womanQueue.empty()) {
+        console.log("女方缺人");
+    }
+
+    if(manQueue.empty()) {
+        console.log("男方缺人");
+    }
+
+</script>
+</html>

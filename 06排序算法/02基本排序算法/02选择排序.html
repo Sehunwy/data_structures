@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据结构</title>
+    <script>
+        var data = [72,54,58,30,31,78,2,77,82,72];
+        var length = data.length;
+        var start = new Date().getTime();
+        var min ;
+        for(var i=0;i<=length-2;i++){
+            min = i;
+          for(j=i+1;j<=length-1;j++){
+             if(data[min]>data[j]){
+                 min = j;
+             }
+          }
+
+          var buffer = data[i];
+            data[i] = data[min];
+            data[min]=buffer;
+        }
+
+        var stop = new Date().getTime();
+        var elapsed = stop - start;
+        console.log(data);
+        console.log(elapsed);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

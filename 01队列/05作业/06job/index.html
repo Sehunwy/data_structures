@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script src="Queue.js"></script>
+    <script>
+
+        function isPalindrome(words) {
+            var queue = new Queue();
+            //1,获得字符串的长度
+            var length =words.length;
+            //2,变量字符串
+            for(var i=0;i<length;i++){
+                queue.enqueue(words[i]);
+            }
+
+            var data='';
+            while(!queue.empty()){
+                data = data+queue.deEndqueue();
+            }
+
+            if(data==words){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
+        console.log(isPalindrome('tthhtt'));
+        console.log(isPalindrome('hello'));
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

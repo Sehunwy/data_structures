@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>阶乘</title>
+    <script src="Stack.js"></script>
+    <script>
+
+        function fact(number) {
+            //1,创建栈
+            var stack = new Stack();
+            while(number>0){
+                stack.push(number);
+                number--;
+            }
+            var data = 1;
+
+            //对当前的数据进行遍历
+            stack.forEach(function (item) {
+                data = data*item;
+            })
+
+            return data;
+        }
+
+
+        console.log(fact(50));
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

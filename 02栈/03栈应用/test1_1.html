@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Stack.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    function Base(number,base) {
+        var stack = new Stack();
+
+        while (number>0) {
+            var buffer = number%base;
+            stack.push(buffer);
+            number = Math.floor(number/base);
+        }
+
+        var buffer="";
+        stack.forEach(function (item) {
+            buffer = buffer+item;
+        });
+        return buffer;
+
+    }
+
+
+    console.log(Base(16,16));
+</script>
+</html>

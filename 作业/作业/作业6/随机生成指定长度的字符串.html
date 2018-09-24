@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机生成指定长度的字符串</title>
+</head>
+<body>
+
+</body>
+<script>
+    var length = 4;
+
+    var strr = '';
+
+    var str = [];
+    for(var i=33;i<=126;i++){
+        str.push(String.fromCharCode(i));
+    }
+
+    var lengthstr = str.length;
+    for(i=0;i<length;i++){
+        var index = Math.floor(Math.random()*lengthstr);
+        strr = strr + str[index];
+    }
+    console.log(strr);
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数字转换为二进制和八进制</title>
+    <script src="Stack.js"></script>
+    <script>
+        function Base(number,base) {
+            var stack = new Stack();
+            while(number>0){
+                stack.push(number%base);
+                number=Math.floor(number/base);
+            }
+            var data="";
+            stack.forEach(function (item) {
+                data = data+item;
+            })
+            return data;
+        }
+
+        console.log(Base(35,8))   ;
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

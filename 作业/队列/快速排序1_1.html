@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+    //创建两个队列，一个用于存储除10的余数，一个用于存储除10的商
+    var queues = [];
+    var queues1 = [];
+    for(var i=0;i<10;i++) {
+        queues[i] = new Deque();
+        queues1[i] = new Deque();
+    }
+
+    //随机产生10个1到99的数
+    for(var i=0;i<10;i++) {
+        var rand = Math.floor(Math.random()*99)+1;
+        var index = rand%10;
+        //将除10的余数加到队列queues中，使个位数从小到大排列
+        queues[index].enqueue(rand);
+    }
+
+    for(var i=0;i<10;i++) {
+        //遍历队列queues
+        queues[i].forEach(function (item) {
+            var index = Math.floor(item/10);
+            //将除10的商加到队列queues1中，使十位数从小到大排列
+            queues1[index].enqueue(item);
+        })
+    }
+
+    for(var i=0;i<10;i++) {
+        //遍历队列queues1
+        queues1[i].forEach(function (item) {
+            console.log(item);
+        })
+    }
+
+</script>
+</html>

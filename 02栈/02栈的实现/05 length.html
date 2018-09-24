@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        function Stack() {
+            this.dataStore=[];
+            this.push=function (element) {
+                this.dataStore[this.dataStore.length]=element;
+            }
+
+            this.pop=function(){
+                if(this.dataStore.length<1)
+                    return null;
+                //取得最后的数据
+                var buffer = this.dataStore[this.dataStore.length-1];
+                //把最后的数据置空
+                this.dataStore[this.dataStore.length-1]=null;
+                //改变数组的长度
+                this.dataStore.length--;
+                //返回数据
+                return buffer;
+            }
+
+            this.peek=function () {
+                //返回数据
+                return  this.dataStore[this.dataStore.length-1];
+            }
+
+            this.length = function () {
+                return this.dataStore.length;
+            }
+
+
+        }
+        //1,创建一个堆栈
+        var stack = new Stack();
+        //2,添加数据
+        stack.push("小刚");
+        stack.push("小林");
+        stack.push("小超");
+        stack.push("小孟");
+
+        console.log(stack.pop());
+        console.log(stack.length());
+
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计一个字符串出现最多的字母</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = "aaaaacccccssdsddddddddda";
+    var length = data.length;
+    var datas = [];
+    var num = [];
+    var index = 0;
+    for(var i=0;i<length;i++) {
+        if(datas.indexOf(data[i])<0) {
+            datas[index] = data[i];
+            num[data[i]] = 1;
+            index++;
+        }
+        else {
+            num[data[i]]++;
+        }
+    }
+    Array.prototype.forEach = function (call) {
+        for(var i=0;i<this.length;i++)
+            call(this[i]);
+    }
+    var max = num[datas[0]];
+    var datamax = datas[0];
+    for(var i=1;i<datas.length;i++){
+        if(max<num[datas[i]]) {
+            max = num[datas[i]];
+            datamax = datas[i];
+        }
+    }
+     console.log("出现最多的字母:"+datamax+"  出现次数："+max);
+</script>
+</html>

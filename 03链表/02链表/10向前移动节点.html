@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-向前移动节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,找到最后的节点
+                while (currNode.next != null) {
+                    currNode = currNode.next;
+                }
+                //3，把新创建的节点添加到最后节点
+                currNode.next=new Node(element);
+            };
+
+            this.insertAfter = function (element,after) {
+                var currNode = this.find(after);
+                var newNode=new Node(element);
+                newNode.next= currNode.next;
+                currNode.next=newNode;
+            };
+            this.insertBefore=function (element,before) {
+                //创建当前的节点
+                let node = new Node(element);
+                //获得before节点的前一个节点
+                let preNode= this.findPrevious(before);
+                //把before节点连到新节点的后面
+                node.next=preNode.next;
+                //把preNode节点和新节点连到一起
+                preNode.next=node;
+            }
+
+            this.forEach=function(call) {
+                //1,获得头节点
+                var currNode = this.head;
+                var index=0;
+                //2,遍历节点数据
+                while(currNode!=null){
+                    call(currNode.element,index);
+                    currNode=currNode.next;
+                }
+            };
+
+            this.find=function (element) {
+                var currNode = this.head;
+                while(currNode.element!=element){
+                    currNode = currNode.next;
+                }
+                return currNode;
+            }
+
+            this.remove = function (item) {
+                var prevNode = this.findPrevious(item);
+                if (!(prevNode.next == null)) {
+                    prevNode.next = prevNode.next.next;
+                }
+            };
+            this.findPrevious = function (item) {
+                var currNode = this.head;
+                while (currNode.next!= null &&currNode.next.element != item) {
+                    currNode = currNode.next;
+                }
+                return currNode;
+            };
+            //head   1   2   3   4   5
+            this.advance=function(currElement,n){
+                var currentNode = this.find(currElement);
+                var buffer = this.findPrevious(currElement);
+                var preNode=buffer;
+                while(preNode.element!='head'&&n>0){
+                    preNode = this.findPrevious(preNode.element);
+                    n--;
+                }
+                buffer.next=currentNode.next;
+                currentNode.next=preNode.next;
+                preNode.next=currentNode;
+            }
+
+        }
+
+        var list = new LList();
+        list.insert('你好1');
+        list.insert('你好2');
+        list.insert('你好3');
+        list.insert('你好4');
+
+        list.advance('你好3',100);
+
+
+        list.forEach(function (data,index) {
+            console.log(data);
+        })
+
+
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

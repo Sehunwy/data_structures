@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方块舞</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Danser(name,sex) {
+        this.name = name;
+        this.sex = sex;
+    }
+
+    function Queue() {
+        this.dataStore = [];
+
+        //进队列，从尾部添加数据
+        this.enqueue = function (data) {
+            this.dataStore.push(data);
+        }
+
+        //从队列头部删除数据，并且获得这个数据
+        this.dequeue = function () {
+            return this.dataStore.shift();
+        }
+
+        //获得队列最前面的数据
+        this.front = function () {
+            return this.dataStore[0];
+        }
+
+        //遍历队列
+        this.forEach = function (call) {
+            var length = this.dataStore.length;
+            for(var i=0;i<length;i++)
+                call(this.dataStore[i]);
+        }
+
+    }
+
+    //创建男生和女生队列
+    var queueM = new Queue();
+    var queueF = new Queue();
+    var dansers = [{name:'Allison McMillan',sex:'F'},{name:'Frank Opitz',sex:'M'},{name:'Mason McMillan',sex:'M'},{name:'Clayton Ruff',sex:'M'},{name:'Cheryl Ferenback',sex:'F'},{name:'Raymond Williams',sex:'M'},{name:'Jennifer Ingram',sex:'F'},{name:'Bryan Frazer',sex:'M'},{name:'David Durr',sex:'M'},{name:'Danny Martin',sex:'M'},{name:'Aurora Adney',sex:'F'}];
+    var length = dansers.length;
+    for(var i=0;i<length;i++) {
+        var danser = new Danser(dansers[i].name,dansers[i].sex);
+        if(dansers[i].sex=='F')
+            queueF.enqueue(danser);
+        else
+            queueM.enqueue(danser);
+    }
+
+    //从队列头部删除数据，并且获得这个数据
+    var dequeueM = queueM.dequeue();
+    var dequeueF = queueF.dequeue();
+
+    while(dequeueM!=null&&dequeueF!=null) {
+        console.log("姓名："+dequeueM.name+" 性别："+dequeueM.sex+"  舞伴  "+" 姓名："+dequeueF.name+" 性别："+dequeueF.sex);
+        dequeueM = queueM.dequeue();
+        dequeueF = queueF.dequeue();
+        if(dequeueF==null)
+            console.log("女生配完，舞蹈结束");
+        else if(dequeueM==null)
+            console.log("男生配完，舞蹈结束");
+    }
+
+</script>
+</html>

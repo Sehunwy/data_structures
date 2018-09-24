@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Person(name,sex,age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+
+        this.getSex = function () {
+            return this.sex;
+        }
+
+        this.getAge = function () {
+            return this.age;
+        }
+
+        this.getName = function () {
+            return this.name;
+        }
+    }
+
+    function List() {
+        this.dataStore = [];
+        this.append = function (data) {
+            //根据当前数组的长度插入新的数据
+            this.dataStore[this.length()] = data;
+        }
+
+        this.forEach = function (call) {
+            //1,获得数组的长度
+            var length = this.length();
+            //2,遍历数据
+            for (var i = 0; i < length; i++) {
+                call(this.dataStore[i]);
+            }
+        }
+
+
+
+        //根据条件选出
+        this.conditions = function (sex,ageDown,ageUp) {
+            //1,获得数组的长度
+            var length = this.length();
+            //2,遍历数据
+            for (var i = 0; i < length; i++) {
+                if(this.dataStore[i].age<=ageUp&&this.dataStore[i].age>=ageDown&&this.dataStore[i].sex==sex) {
+                    console.log("姓名："+this.dataStore[i].name+"  性别："+this.dataStore[i].sex+"  年龄："+this.dataStore[i].age);
+                }
+            }
+        }
+    }
+
+    var list = new List();
+    for(var i=0;i<50;i++) {
+        var sex;
+        var randSex = Math.floor(Math.random()*2);
+        if(randSex==0)
+            sex = "男";
+        else
+            sex = "女";
+        var randAge = Math.floor(Math.random()*100);
+        var person = new Person("张"+i,sex,randAge);
+        list.append(person);
+    }
+
+    list.conditions("女",18,30);
+
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择排序</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = [72,54,58,30,31,78,2,77,82,72];
+    var length = data.length;
+    var min;
+    for(var i=0;i<length-1;i++) {
+        min = i;
+        for(var j=i+1;j<length;j++){
+            if(data[min]>data[j]) {
+                min = j;
+            }
+        }
+        var buffer = data[min];
+        data[min] = data[i];
+        data[i] = buffer;
+    }
+    console.log(data);
+</script>
+</html>

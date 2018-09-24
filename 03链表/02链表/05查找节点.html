@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-查找节点</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,找到最后的节点
+                while (currNode.next != null) {
+                    currNode = currNode.next;
+                }
+                //3，把新创建的节点添加到最后节点
+                currNode.next=new Node(element);
+            };
+
+            this.forEach=function(call) {
+                //1,获得头节点
+                var currNode = this.head;
+                var index=0;
+                //2,遍历节点数据
+                while(currNode.next!=null){
+                    call(currNode.element,index);
+                    currNode=currNode.next;
+                }
+            };
+
+            this.find=function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2，根据当前的节点的值是否等于当前的element来进行遍历
+                while(currNode.element!=element){
+                    //3,把当前节点的后继给予当前的节点
+                    currNode = currNode.next;
+                }
+                //4,返回当前的节点
+                return currNode;
+            }
+        }
+
+        var lList = new LList();
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("小花");
+
+        var currNode=lList.find('小明');
+
+        console.log(currNode.next.element);
+        
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

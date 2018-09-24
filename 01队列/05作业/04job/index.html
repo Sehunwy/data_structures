@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script src="Tools.js"></script>
+    <script src="Queue.js"></script>
+    <script>
+        //1,准备数组盒子
+        var numbers = [];
+        //2， 创建数据
+        for (var i = 0; i < 20; i++) {
+            numbers[i] = Math.floor(Math.random() * 90) + 10;
+        }
+        //3,准备队列盒子
+        var queues = [];
+        for(var i=0;i<10;i++){
+            queues[i]= new Queue();
+        }
+
+
+        //4,获得按个位排序的数据
+         numbers=SortingOne(queues,numbers);
+
+        //5,清空队列里面的数据
+        for(var i=0;i<10;i++){
+            queues[i].clear();
+        }
+        //6，获得按十位排序的数据
+        numbers=SortingTen(queues,numbers);
+        //7，打印数据
+        console.log(numbers.toString());
+    </script>
+</head>
+<body>
+<h1>队列的快速排序</h1>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>01括号是否匹配</title>
+    <script src="Stack.js"></script>
+    <script>
+        function matchBracket(expression) {
+            //1,创建栈对象
+            var stack = new Stack();
+            //2,把字符串分解为数组
+            var eles = expression.split('');
+            for (var i = 0; i < eles.length; i++) {
+                var ele = eles[i];
+                if (['{', '[', '('].indexOf(ele) !== -1) {
+                    stack.push(ele);
+                } else {
+                    var topEle = stack.peek();
+                    switch (ele) {
+                        case '}':
+                            if (topEle === '{') {
+                                stack.pop();
+                                break;
+                            }
+                            return i;
+                        case ']':
+                            if (topEle === '[') {
+                                stack.pop();
+                                break;
+                            }
+                            return i;
+                        case ')':
+                            if (topEle === '(') {
+                                stack.pop();
+                                break;
+                            }
+                            return i;
+                        default: break;
+                    }
+                }
+            };
+            if (stack.length()) {
+                return expression.length+1;
+            }
+            return -1;
+        }
+        console.log(matchBracket('2.3 + 23 / 12 + (3.14}159×0.24')); // 返回30.
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

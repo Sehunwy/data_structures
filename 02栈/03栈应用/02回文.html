@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>02回文</title>
+    <script src="Stack.js"></script>
+    <script>
+
+        function isPalindrome(words) {
+            //1,创建栈对象
+            var stack = new Stack();
+            //2,获得字符串的长度
+            var length = words.length;
+            //3,遍历当前的字符串
+            for(var i=0;i<length;i++){
+                stack.push(words[i]);
+            }
+            var data='';
+            stack.forEach(function (item) {
+                data=data+item;
+            })
+            //如果当前的文字相等，就返回真
+            if(words==data){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        console.log(isPalindrome('abaaba1'));
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

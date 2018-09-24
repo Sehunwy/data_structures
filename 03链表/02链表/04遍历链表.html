@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>链表-遍历链表</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+        }
+        function LList() {
+            this.head = new Node("head");
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,找到最后的节点
+                while (currNode.next != null) {
+                    currNode = currNode.next;
+                }
+                //3，把新创建的节点添加到最后节点
+                currNode.next=new Node(element);
+            };
+
+            this.forEach = function (call) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,遍历的下标
+                var index = 0;
+                //3,遍历节点
+                while (currNode != null) {
+                    call(currNode, index);
+                    //下标值增加
+                    index++;
+                    //把节点的后继赋值给当前的节点
+                    currNode = currNode.next;
+                }
+            }
+        }
+
+        var lList = new LList();
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("小花");
+
+        lList.forEach(function (node,index) {
+            console.log(node.element);
+        })
+        
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

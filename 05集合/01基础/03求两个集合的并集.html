@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据结构</title>
+    <script>
+        function Set() {
+            this.dataStore = [];
+            this.add = function (data) {
+                if (this.dataStore.indexOf(data) < 0) {
+                    this.dataStore.push(data);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.remove = function (data) {
+                var pos = this.dataStore.indexOf(data);
+                if (pos > -1) {
+                    this.dataStore.splice(pos, 1);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.forEach= function (call) {
+                var length =this.dataStore.length;
+                for(var i=0;i<length;i++){
+                    call(this.dataStore[i],i);
+                }
+            };
+            this.contains=function (data) {
+                if (this.dataStore.indexOf(data) > -1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.union=function (set) {
+                //1，创建一个临时的set
+                var buffer = new Set();
+                //2,把当前的集合数据添加到临时集合里面
+                this.forEach(function (item,index) {
+                    buffer.add(item);
+                })
+
+                set.forEach(function (item,index) {
+                    if(!buffer.contains(item)){
+                        buffer.add(item);
+                    }
+                })
+                return buffer;
+            };
+
+        }
+
+        var cis = new Set();
+        cis.add("小刚");
+        cis.add("小明");
+        cis.add("小红");
+        cis.add("小李");
+        var dmp = new Set();
+        dmp.add("小李");
+        dmp.add("小明");
+        dmp.add("小张");
+        var it = new Set();
+        it = cis.union(dmp);
+        it.forEach(function (item,index) {
+            console.log(item);
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回文</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    String.prototype.forEach = function (call) {
+        for(var i=0;i<this.length;i++) {
+            call(this[i]);
+        }
+    }
+
+    function isPalindrome(data) {
+        var dequehead = new Deque();
+        data.forEach(function (item) {
+            dequehead.enqueuehead(item);
+        });
+
+        var buffer = '';
+        dequehead.forEach(function (word) {
+            buffer = buffer+word
+        });
+        if(buffer==data)
+            return true;
+        else
+            return false;
+    }
+
+    console.log(isPalindrome("aabbaa"));
+</script>
+</html>

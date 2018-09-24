@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除字符串中重复的字符</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = "aaacccddfdfds";
+    var buffer = [];
+    var length = data.length;
+    for(var i=0;i<length;i++) {
+        if(buffer.indexOf(data[i])<0){
+            buffer.push(data[i]);
+        }
+    }
+    console.log(buffer);
+</script>
+</html>

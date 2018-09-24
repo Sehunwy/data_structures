@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+    <script src="Queue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+    var queue0 = new Deque();
+    var queue1 = new Deque();
+    var queue2 = new Deque();
+    var queue3 = new Deque();
+    var queue4 = new Deque();
+    var queue5 = new Deque();
+    var queue6 = new Deque();
+    var queue7 = new Deque();
+    var queue8 = new Deque();
+    var queue9 = new Deque();
+    var datas = [];
+    var sorting = [];
+    for(var i=0;i<20;i++) {
+        var rand = Math.floor(Math.random()*100)+1;
+        if(rand%10==0)
+            queue0.enqueue(rand);
+        else if(rand%10==1)
+            queue1.enqueue(rand);
+        else if(rand%10==2)
+            queue2.enqueue(rand);
+        else if(rand%10==3)
+            queue3.enqueue(rand);
+        else if(rand%10==4)
+            queue4.enqueue(rand);
+        else if(rand%10==5)
+            queue5.enqueue(rand);
+        else if(rand%10==6)
+            queue6.enqueue(rand);
+        else if(rand%10==7)
+            queue7.enqueue(rand);
+        else if(rand%10==8)
+            queue8.enqueue(rand);
+        else if(rand%10==9)
+            queue9.enqueue(rand);
+        //datas.push(rand);
+    }
+
+    queue0.forEach(function (item) {
+        datas.push(item);
+        queue0.dequeue();
+    });
+    queue1.forEach(function (item) {
+        datas.push(item);
+        queue1.dequeue();
+    });
+    queue2.forEach(function (item) {
+        datas.push(item);
+        queue2.dequeue();
+    });
+    queue3.forEach(function (item) {
+        datas.push(item);
+        queue3.dequeue();
+    });
+    queue4.forEach(function (item) {
+        datas.push(item);
+        queue4.dequeue();
+    });
+    queue5.forEach(function (item) {
+        datas.push(item);
+        queue5.dequeue();
+    });
+    queue6.forEach(function (item) {
+        datas.push(item);
+        queue6.dequeue();
+    });
+    queue7.forEach(function (item) {
+        datas.push(item);
+        queue7.dequeue();
+    });
+    queue8.forEach(function (item) {
+        datas.push(item);
+        queue8.dequeue();
+    });
+    queue9.forEach(function (item) {
+        datas.push(item);
+        queue9.dequeue();
+    });
+
+    Array.prototype.forEach = function (call) {
+        for(var i=0;i<this.length;i++) {
+            call(this[i]);
+        }
+    }
+
+
+    datas.forEach(function (item) {
+        var result = Math.floor(item/10);
+        if(result==0)
+            queue0.enqueue(item);
+        else if(result==1)
+            queue1.enqueue(item);
+        else if(result==2)
+            queue2.enqueue(item);
+        else if(result==3)
+            queue3.enqueue(item);
+        else if(result==4)
+            queue4.enqueue(item);
+        else if(result==5)
+            queue5.enqueue(item);
+        else if(result==6)
+            queue6.enqueue(item);
+        else if(result==7)
+            queue7.enqueue(item);
+        else if(result==8)
+            queue8.enqueue(item);
+        else if(result==9)
+            queue9.enqueue(item);
+    })
+
+    queue0.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue1.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue2.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue3.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue4.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue5.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue6.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue7.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue8.forEach(function (item) {
+        sorting.push(item);
+    });
+    queue9.forEach(function (item) {
+        sorting.push(item);
+    });
+
+    sorting.forEach(function (item) {
+        console.log(item);
+    })
+
+
+</script>
+</html>

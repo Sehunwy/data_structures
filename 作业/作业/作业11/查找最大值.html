@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找最大值</title>
+    <script src="BST.js"></script>
+    <script src="Node.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var bst = new BST();
+
+    bst.insert(23);
+    bst.insert(45);
+    bst.insert(16);
+    bst.insert(37);
+    bst.insert(3);
+    bst.insert(99);
+    bst.insert(22);
+
+    console.log(bst.getMax(bst.root.element));
+
+    //bst.inOrder(bst.root);
+</script>
+</html>

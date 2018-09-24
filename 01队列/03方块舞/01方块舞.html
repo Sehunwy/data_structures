@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>01方块舞</title>
+    <script src="Queue.js"></script>
+    <script>
+        //跳舞的人
+        var names = ["F Allison McMillan",
+            " M Frank Opitz ",
+            "M Mason McMillan ",
+            "M Clayton Ruff",
+            "F Cheryl Ferenback ",
+            " M Raymond Williams",
+            "F Jennifer Ingram ",
+            "M Bryan Frazer",
+            "M David Durr",
+            "M Danny Martin",
+            "F Aurora Adney"];
+
+        function Dancer(name, sex) {
+            this.name = name;
+            this.sex = sex;
+        }
+
+        function Grouping(female, male) {
+            //1,遍历数据
+            var length = names.length;
+            for (var i = 0; i < length; i++) {
+                //2获得数组里面的数据，并且把两边的空格去掉
+                var dancerData = names[i].trim();
+                //3，获得第一个空格的下标位置
+                var index = dancerData.indexOf(' ');
+                //4,获得开始到空格之间的数据
+                var sex = dancerData.substring(0, index);
+                //5,空格后到结束的字符串
+                var name = dancerData.substring(index + 1, dancerData.length);
+                //6,创建舞者
+                var dancer =  new Dancer(name,sex);
+                //7,是男的就放置到男队伍
+                if(sex=='F'){
+                    female.enqueue(dancer);
+                }else{
+                    male.enqueue(dancer);
+                }
+            }
+        }
+
+        function dance(female, male) {
+            while(!female.empty()&&!male.empty()){
+                console.log(female.dequeue().name+"和"+male.dequeue().name+"一起跳舞!") ;
+            }
+        }
+
+        //男性舞队
+        var female = new Queue();
+        //女性舞队
+        var male = new Queue();
+
+        //分组
+        Grouping(female, male);
+        //跳舞
+        dance(female, male);
+
+        if(!female.empty()){
+            console.log(female.front().name+"在等待男舞伴");
+        }
+
+        if(!male.empty()){
+            console.log(male.front().name+"在等待女舞伴");
+        }
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

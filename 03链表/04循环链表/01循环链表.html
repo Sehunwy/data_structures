@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script src="Node.js"></script>
+    <script>
+
+
+        function LList() {
+            this.head = new Node('head');
+
+            //始终是在最后一个节点插入
+            this.insert = function (element) {
+
+                //1,设置当前的节点
+                var currentNode = this.head;
+                //2,创建新的节点
+                var newNode = new Node(element);
+                while (currentNode.next != null) {
+                    //把当前节点的下一个节点给予当前的节点
+                    currentNode = currentNode.next;
+                }
+                //当前节点的下一个节点指向新节点
+                currentNode.next = newNode;
+                //新的节点的前一个节点指向当前的节点
+                newNode.previous = currentNode;
+
+
+                //把后面的头节点连接在一起
+                newNode.next = this.head;
+
+                this.head.previous=newNode;
+
+            }
+
+            this.insertAfter = function (newElement, after) {
+                var after = this.find(after);
+                var newNode = new Node(newElement);
+
+                if (after == null || after.next == null) {
+                    after = this.findLast();
+                    after.next = newNode;
+
+                    newNode.previous = after;
+
+                } else {
+                    //after的后继的前驱指向当前的节点
+                    after.next.previous = newNode;
+                    newNode.next = after.next;
+
+                    after.next = newNode;
+                    newNode.previous = after;
+                }
+
+                //1 2 3
+
+
+            }
+
+            this.find = function (element) {
+                var currentNode = this.head;
+
+                while (currentNode != null && currentNode.element != element) {
+                    currentNode = currentNode.next;
+                }
+                return currentNode;
+            }
+
+            this.forEach = function (call) {
+                //1,获得当前的节点
+                var currentNode = this.head.next;
+                //2,设置遍历节点的下标
+                var index = 0;
+
+                var time = 0;
+                //3,遍历节点
+                while (currentNode != null&&currentNode.element!='head') {
+                    call(currentNode, index);
+                    //把当前的节点移动后面去
+                    currentNode = currentNode.next;
+                    //下标加1
+                    index++;
+                }
+            }
+
+            this.forEachReverse = function (call) {
+                //1,找到最后的节点
+                var lastNode = this.findLast();
+                //2，反向的遍历
+                while (lastNode != null) {
+                    call(lastNode);
+                    lastNode = lastNode.previous;
+                }
+            }
+
+            this.findLast = function () {
+                //当前的头节点
+                var currentNode = this.head;
+                //遍历
+                while (currentNode.next != null) {
+                    currentNode = currentNode.next;
+                }
+                return currentNode;
+
+            }
+
+            this.remove = function (element) {
+                //1,获得头节点
+                var currentNode = this.head;
+                //2,遍历节点
+                while (currentNode != null && currentNode.element != element) {
+                    currentNode = currentNode.next;
+                }
+                currentNode.previous.next = currentNode.next;
+                currentNode.next.previous = currentNode.previous;
+
+            }
+
+        }
+
+        //1,创建双向链表
+        var list = new LList();
+        //2,插入元素
+        list.insert('小明');
+        list.insert('小超');
+        list.insert('小李');
+        list.insert('小刘');
+        list.insert('小高');
+        list.insert('小屈');
+
+        list.insertAfter("小红", '小屈');
+        //3,遍历节点
+        list.forEach(function (node, index) {
+            console.log(node.element);
+        })
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

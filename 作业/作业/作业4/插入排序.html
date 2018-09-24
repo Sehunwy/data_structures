@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插入排序</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = [72,54,58,30,31,78,2,77,82,72];
+    var length = data.length;
+    for(var i=1;i<length;i++){
+        while(data[i-1]>data[i]&&(i-1)>=0) {
+            var buffer = data[i-1];
+            data[i-1] = data[i];
+            data[i] = buffer;
+            i--;
+        }
+    }
+    console.log(data);
+</script>
+</html>

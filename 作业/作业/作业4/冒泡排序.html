@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序</title>
+</head>
+<body>
+
+</body>
+<script>
+    var data = [72,54,58,30,31,78,2,77,82,72];
+    var length = data.length;
+    for(var i=0;i<length-1;i++){
+        for(var j=i+1;j<length;j++){
+            if(data[i]>data[j]) {
+                var buffer = data[i];
+                data[i] = data[j];
+                data[j] = buffer;
+            }
+        }
+    }
+    console.log(data);
+
+</script>
+</html>

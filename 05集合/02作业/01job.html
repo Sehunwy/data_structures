@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+        function Set() {
+            this.dataStore = [];
+            this.add = function (data) {
+                if (this.dataStore.indexOf(data) < 0) {
+                    //var data = [72,54,58,30,31,78,2,77,82,72];
+                    //[54,72,58,30,31,78,2,77,82,72];
+                    //1,获得数组的长度
+                    
+                    var length = this.dataStore.length;
+                    if(length==0)
+                    {
+                        this.dataStore.push(data);
+                        return true;
+                    }
+                   //2,遍历数组
+                    for(var i=0;i<length;i++){
+                        if( data<this.dataStore[i]){
+                            this.dataStore.splice(i,0,data);
+                            return true;
+                        }
+                    }
+
+                    this.dataStore.push(data);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.remove = function (data) {
+                var pos = this.dataStore.indexOf(data);
+                if (pos > -1) {
+                    this.dataStore.splice(pos, 1);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.forEach= function (call) {
+                var length =this.dataStore.length;
+                for(var i=0;i<length;i++){
+                    call(this.dataStore[i],i);
+                }
+            };
+        }
+        var data = [72,54,58,30,31,78,2,77,82,72];
+        var set = new Set();
+
+        data.forEach(function (item) {
+            set.add(item);
+        })
+        console.log("遍历数据");
+        set.forEach(function (item,index) {
+            console.log(item);
+        })
+        
+
+
+    </script>
+</head>
+<body>
+<h1>修改Set 类，使里面的元素按顺序存储</h1>
+
+</body>
+</html>

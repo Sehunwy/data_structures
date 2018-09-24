@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Node(element) {
+        this.element = element;
+        this.next = null;
+    }
+
+    function LList() {
+        this.head = new Node("head");
+        this.insert = function (data) {
+            //创建新的节点
+            var buffer = new Node(data);
+            //获得最后的节点
+            var last = this.findLast();
+            //把最后节点的next指向新节点
+            last.next = buffer;
+        }
+
+        this.findLast = function () {
+            var buffer = this.head;
+
+            while(buffer.next!=null) {
+                buffer = buffer.next;
+            }
+            return buffer;
+        }
+
+        this.find = function (data) {
+            var buffer = this.head;
+            while (buffer!=null) {
+                if(buffer.element==data) {
+                    return buffer;
+                }
+                buffer = buffer.next;
+            }
+            return buffer;
+        }
+
+        this.findPrevious = function (data) {
+            var buffer = this.head;
+            var node = null;
+            while (buffer!=null&&buffer.next!=null) {
+                if(buffer.next.element==data) {
+                    node = buffer;
+                    return node;
+                }
+                buffer = buffer.next;
+            }
+            return node;
+        }
+
+        this.remove = function (data) {
+            let nextNode = this.find(data).next;
+            let preNode = this.findPrevious(data);
+            preNode.next = nextNode;
+        }
+
+        this.insertAfter=function (element,after){
+            //创建当前节点
+            let node = new Node(element);
+            //获得after节点
+            let afterNode = this.find(after);
+            //afterNode的后面节点和当前节点链接在一起
+            node.next = afterNode.next;
+            //把当前节点链接到after节点后面
+            afterNode.next = node;
+        }
+
+        this.insertBefore=function (element,before){
+            //创建当前节点
+            let node = new Node(element);
+            //获得before节点
+            let preNode = this.findPrevious(before);
+            //把before节点链接到新节点后面
+            node.next = preNode.next;
+            //preNode节点和新节点链接在一起
+            preNode.next = node;
+        }
+
+        this.forEach = function (call) {
+            var buffer = this.head;
+            while (buffer!=null) {
+                call(buffer);
+                buffer = buffer.next;
+            }
+        }
+    }
+
+    let lList = new LList();
+    lList.insert("你");
+    lList.insert("在");
+    lList.insert("哪");
+
+    lList.insertBefore('新元素前面','在');
+    lList.insertAfter('新元素后面','在');
+
+    lList.forEach(function (node) {
+        console.log(node.element);
+    })
+</script>
+</html>

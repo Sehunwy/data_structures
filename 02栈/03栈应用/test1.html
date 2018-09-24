@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Stack() {
+        this.dataStore = [];
+        var remainder;
+        var result;
+        var results;
+        this.pop1 = [];
+
+        this.push = function (data) {
+            result = data;
+            while(result>0) {
+                results = result;
+                remainder = result%2;
+                this.dataStore.push(remainder);
+                result = Math.floor(results/2);
+            }
+        }
+
+
+        this.pop = function () {
+            while(this.dataStore.length>0) {
+                this.pop1.push(this.dataStore.pop());
+            }
+        }
+
+        this.forEach = function (call) {
+            //获得数组的长度
+            var length = this.pop1.length;
+            for(var i=0;i<length;i++)
+                call(this.pop1[i]);
+        }
+    }
+
+    var stack = new Stack();
+    stack.push(42);
+    stack.pop();
+
+    stack.forEach(function (data) {
+        console.log(data);
+    });
+
+</script>
+</html>

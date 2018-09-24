@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Node(element) {
+        this.element = element;
+        this.next = null;
+        this.previous = null;
+    }
+
+    function  LList() {
+        this.head = new Node('head');
+
+        this.insert = function (element) {
+            //创建新的节点
+            var node = new Node(element);
+            //获得最后的节点
+            var lastNode = this.lastNode();
+            //和最后的节点连在一起
+            lastNode.next = node;
+            node.previous = lastNode;
+            //新的节点就是最后的节点
+            this.head.previous = node;
+            node.next = this.head;
+        }
+
+        this.lastNode = function () {
+            if(this.head.next==null)
+                return this.head;
+            else {
+                var lastNode = this.head;
+                while (lastNode.next.element!='head') {
+                    lastNode = lastNode.next;
+                }
+                return lastNode;
+            }
+        }
+
+        this.find = function (element) {
+            if(this.head.next==null) {
+                return null;
+            }
+            var node = this.head.next;
+            while (node.element!=element&&node.element!='head') {
+                node = node.next;
+            }
+            if(node.element=='head') {
+                return null;
+            }
+            else {
+                return node;
+            }
+        }
+
+    }
+
+    this.remove = function (element) {
+        //获得当前的节点
+        var node = this.find(element);
+        //获得当前节点的前一个节点
+        var preNode = node.previous;
+        //获得当前节点的后一个节点
+        var nextNode = node.next;
+        //连接节点
+        preNode.next = nextNode;
+
+    }
+
+    this.insertAfter = function (element,after) {
+        //获得当前的节点
+        var node = this.find(after);
+        //创建一个新的节点
+        var newNode = new Node(element);
+        //把新节点插入到after后
+            node.next.previous = newNode;
+        newNode.next = node.next;
+
+        //连接当前节点和after节点
+        node.next = newNode;
+        newNode.previous = node;
+    }
+
+    this.forEach=function (call) {
+        if(this.head.next == null) {
+            return;
+            var node = this.head.next;
+            while (node!=null&&node.element!='head') {
+                call(node);
+                node = node.next;
+            }
+
+        }
+
+        this.forEachReverse = function (call) {
+            if(this.head.next == null) {
+                return;
+                var lastNode = this.head.previous;
+                while (lastNode != null&&lastNode.element!='head') {
+                    call(lastNode);
+                    lastNode = lastNode.previous;
+                }
+            }
+        }
+    }
+
+    var llist = new LList();
+    llist.insert(1);
+    llist.insert(2);
+    llist.insert(3);
+    llist.insert(4);
+
+    //llist.remove(2);
+    llist.forEach(function (node) {
+        console.log(node.element);
+    })
+
+</script>
+</html>

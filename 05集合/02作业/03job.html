@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据结构</title>
+    <script>
+
+        function Set() {
+            this.dataStore = [];
+            this.add = function (data) {
+                if (this.dataStore.indexOf(data) < 0) {
+                    this.dataStore.push(data);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.remove = function (data) {
+                var pos = this.dataStore.indexOf(data);
+                if (pos > -1) {
+                    this.dataStore.splice(pos, 1);
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            this.forEach= function (call) {
+                var length =this.dataStore.length;
+                for(var i=0;i<length;i++){
+                    call(this.dataStore[i],i);
+                }
+            };
+            
+            this.higher=function (element) {
+
+                var buffer =[];
+                this.forEach(function (item,index) {
+                    //如果当前传入的数据比数组里面的数据小，就保存在新数组里面
+                    if(item>element){
+                        buffer.push(item);
+                    }
+                })
+                //重写排序
+                buffer.sort();
+
+                return buffer[0];
+               
+            }
+        }
+
+
+        var data = [72,54,58,30,31,78,2,77,82,72];
+        var set = new Set();
+        set.add(72);
+        set.add(54);
+        set.add(58);
+        set.add(30);
+        set.add(31);
+        set.add(78);
+        set.add(2);
+        set.add(77);
+        set.add(82);
+        set.add(72);
+
+        console.log(set.higher(30));
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<h1>为Set 类增加一个higher(element)方法，该方法返回比传入元素大的元素中最小的那个。</h1>
+</body>
+</html>
